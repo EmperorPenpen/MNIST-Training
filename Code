@@ -1,0 +1,42 @@
+# 1. Import libraries
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# 2. Load MNIST dataset
+mnist = datasets.fetch_openml('mnist_784', version=1)
+
+X = mnist.data
+y = mnist.target.astype(int)
+
+# 3. Normalize pixel values (0–255 → 0–1)
+X = X / 255.0
+
+# 4. Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=10000, random_state=42
+)
+
+# 5. Standardize (important for SVM)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# 6. PCA (optional but speeds up SVM a lot)
+pca = PCA(n_components=100)
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+
+# 7. Train SVM model
+svm = SVC(kernel='rbf', C=5, gamma='scale')  # RBF kernel works best
+svm.fit(X_train, y_train)
+
+# 8. Predict
+y_pred = svm.predict(X_test)
+
+# 9. Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
