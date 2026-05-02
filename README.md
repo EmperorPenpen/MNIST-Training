@@ -1,5 +1,6 @@
 # MNIST-Training
 12 Hoá - Nhóm 7.
+
 Dự án: Train AI đọc được chữ viết tay số 0-9 bằng thuật toán Support Vector Machine.
 
 MNIST Dataset: https://www.kaggle.com/datasets/hojjatk/mnist-dataset.
