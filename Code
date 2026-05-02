@@ -20,15 +20,15 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=10000, random_state=42
 )
 
-# Reduce training size (to avoid crash)
+# Reduce training size 
 X_train = X_train[:10000]
 y_train = y_train[:10000]
-# 5. Standardize (important for SVM)
+# 5. Standardize 
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# 6. PCA (optional but speeds up SVM a lot)
+# 6. Principal Component Analysis
 pca = PCA(n_components=100)
 X_train = pca.fit_transform(X_train)
 X_test = pca.transform(X_test)
