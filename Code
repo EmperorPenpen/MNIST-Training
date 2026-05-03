@@ -20,7 +20,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=10000, random_state=42
 )
 
-# Reduce training size 
+# Reduce training size (có thể tăng dần mẫu training đến 60k ký tự)
 X_train = X_train[:10000]
 y_train = y_train[:10000]
 # 5. Standardize 
